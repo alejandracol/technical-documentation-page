@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='technical-documentation-page.css'>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300&display=swap" rel="stylesheet" type='text/css'>
+    <title>CSS Animation technical documentation</title>
+
+</head>
+
+<body>
+
+    <nav id='navbar' tabindex='0'>
+
+        <header><span class='symbol-page'></span>CSS Animation Documentation<span class='dropdown-btn'>&#9660;</span>
+        </header>
+        <ul class='dropdown'>
+            <li><a href='#introduction' class='nav-link'>Introduction</a></li>
+            <li><a href='#configuring_the_animation' class='nav-link'>Configuring the animation</a></li>
+            <li><a href='#defining_the_animation_sequence_using_keyframes' class='nav-link'>Defining the animation
+                    sequence using keyframes</a></li>
+            <li><a href='#animation-name' class='nav-link'>animation-name</a></li>
+            <li><a href='#animation-duration' class='nav-link'>animation-duration</a></li>
+            <li><a href='#animation-timing-function' class='nav-link'>animation-timing-function</a></li>
+            <li><a href='#animation-delay' class='nav-link'>animation-delay</a></li>
+            <li><a href='#animation-iteration-count' class='nav-link'>animation-iteration-count</a></li>
+            <li><a href='#animation-direction' class='nav-link'>animation-direction</a></li>
+            <li><a href='#animation-fill-mode' class='nav-link'>animation-fill-mode</a></li>
+            <li><a href='#animation-play-state' class='nav-link'>animation-play-state</a></li>
+            <li><a href='#animation' class='nav-link'>animation</a></li>
+            <li><a href='#@keyframes' class='nav-link'>@keyframes</a></li>
+            <li><a href='#reference' class='nav-link'>Reference</a></li>
+        </ul>
+
+    </nav>
+
+    <main id='main-doc'>
+
+        <section class='main-section' id='introduction'>
+            <header>Introduction</header>
+            <p>CSS animations make it possible to animate transitions from one CSS style configuration to another.
+                Animations consist of two components, a style describing the CSS animation and a set of keyframes that
+                indicate the start and end states of the animation’s style, as well as possible intermediate waypoints.
+            </p>
+        </section>
+
+        <section class='main-section' id='configuring_the_animation'>
+            <header>Configuring the animation</header>
+            <p>To create a CSS animation sequence, you style the element you want to animate with the <a
+                    href='#animation'><code>animation</code></a> property or its sub-properties. This lets you configure
+                the timing, duration, and other details of how the animation sequence should progress. This does not
+                configure the actual appearance of the animation, which is done using the <a
+                    href='#@keyframes'><code>@keyframes</code></a> at-rule as described in <a
+                    href='#defining_the_animation_sequence_using_keyframes'>Defining the animation sequence using
+                    keyframes</a> below.</p>
+            <p>The sub-properties of the <a href='#animation'><code>animation</code></a> property are:</p>
+            <code>
+                <ul>
+                    <li><a href='#animation-name'>animation-name</a></li>
+                    <li><a href='#animation-duration'>animation-duration</a></li>
+                    <li><a href='#animation-timing-function'>animation-timing-function</a></li>
+                    <li><a href='#animation-delay'>animation-delay</a></li>
+                    <li><a href='#animation-iteration-count'>animation-iteration-count</a></li>
+                    <li><a href='#animation-direction'>animation-direction</a></li>
+                    <li><a href='#animation-fill-mode'>animation-fill-mode</a></li>
+                    <li><a href='#animation-play-state'>animation-play-state</a></li>
+                </ul>
+            </code>
+        </section>
+
+        <section class='main-section' id='defining_the_animation_sequence_using_keyframes'>
+            <header>Defining the animation sequence using keyframes</header>
+            <p>Once you’ve configured the animation’s timing, you need to define the appearance of the animation. This
+                is done by establishing two or more keyframes using the <a
+                    href='#@keyframes'><code>@keyframes</code></a> at-rule. Each keyframe describes how the animated
+                element should render at a given time during the animation sequence.</p>
+            <p>Since the timing of the animation is defined in the CSS style that configures the animation, keyframes
+                use a <code>percentage</code> to indicate the time during the animation sequence at which they take
+                place. 0% indicates the first moment of the animation sequence, while 100% indicates the final state of
+                the animation. Because these two times are so important, they have special aliases: from and to. Both
+                are optional. If from/0% or to/100% is not specified, the browser starts or finishes the animation
+                using the computed values of all attributes.</p>
+            <p>You can optionally include additional keyframes that describe intermediate steps between the start and
+                end of the animation.</p>
+        </section>
+
+        <section class='main-section' id='animation-name'>
+            <header>animation-name</header>
+            <p>The <code>animation-name</code> CSS property sets one or more animations to apply to an element.
+                Each name is an <a href='#@keyframes'><code>@keyframes</code></a> at-rule that sets the property
+                values for the animation sequence.</p>
+            <hr>
+            <div class='sub-section'>
+                <div class='syntax'>
+                    <p class='sub-title'>Sintax</p>
+                    <pre>
+                        <code>
+/* Single animation */
+animation-name: none;
+animation-name: test_05;
+animation-name: -specific;
+animation-name: sliding-vertically;
+
+/* Multiple animations */
+animation-name: test1, animation4;
+animation-name: none, -moz-specific, sliding;
+
+/* Global values */
+animation-name: initial;
+animation-name: inherit;
+animation-name: unset;
+                        </code>
+                    </pre>
+                </div>
+                <div class='demo'>
+                    <p class='sub-title'>CSS Demo: animation-name</p>
+                    <div class='demo-container'>
+                        <div class='demo-dot'>
+                            <div class='animation-name-dot dot' onclick="showAnimationNameDemo(1, 'none')">
+                                animation-name: none;</div>
+                            <div class='animation-name-dot dot' onclick="showAnimationNameDemo(2, 'slide')">
+                                animation-name: slide;</div>
+                            <div class='animation-name-dot dot' onclick="showAnimationNameDemo(3, 'bounce')">
+                                animation-name: bounce;</div>
+                        </div>
+                        <div class='demo-window'>
+                            <div class='animation-name-demo'></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class='main-section' id='animation-duration'>
+            <header>animation-duration</header>
+            <p>The <code>animation-duration</code> CSS property sets the length of time that an animation takes to
+                complete one cycle.</p>
+            <hr>
+            <div class='sub-section'>
+                <div class='syntax'>
+                    <p class='sub-title'>Sintax</p>
+                    <pre>
+                        <code>
+/* Single animation */
+animation-duration: 6s;
+animation-duration: 120ms;
+                            
+/* Multiple animations */
+animation-duration: 1.64s, 15.22s;
+animation-duration: 10s, 35s, 230ms
+                        </code>
+                    </pre>
+                </div>
+                <div class='demo'>
+                    <p class='sub-title'>CSS Demo: animation-duration</p>
+                    <div class='demo-container'>
+                        <div class='demo-dot'>
+                            <div class='animation-duration-dot dot' onclick="showAnimationDurationDemo(1, '750ms')">
+                                animation-duration: 750ms;</div>
+                            <div class='animation-duration-dot dot' onclick="showAnimationDurationDemo(2, '3s')">
+                                animation-duration: 3s;</div>
+                            <div class='animation-duration-dot dot' onclick="showAnimationDurationDemo(3, '0s')">
+                                animation-duration: 0s;</div>
+                        </div>
+                        <div class='demo-window'>
+                            <div class='animation-duration-demo'></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class='main-section' id='animation-timing-function'>
+            <header>animation-timing-function</header>
+            <p>The <code>animation-timing-function</code> CSS property sets how an animation progresses through the
+                duration of each cycle.</p>
+            <hr>
+            <div class='sub-section'>
+                <div class='syntax'>
+                    <p class='sub-title'>Sintax</p>
+                    <pre>
+                        <code>
+/* Keyword values */
+animation-timing-function: ease;
+animation-timing-function: ease-in;
+animation-timing-function: ease-out;
+animation-timing-function: ease-in-out;
+animation-timing-function: linear;
+animation-timing-function: step-start;
+animation-timing-function: step-end;
+                            
+/* Function values */
+animation-timing-function: cubic-bezier(0.1, 0.7, 1.0, 0.1);
+animation-timing-function: steps(4, end);
+                            
+/* Steps Function keywords */ 
+animation-timing-function: steps(4, jump-start);
+animation-timing-function: steps(10, jump-end);
+animation-timing-function: steps(20, jump-none);
+animation-timing-function: steps(5, jump-both);
+animation-timing-function: steps(6, start);
+animation-timing-function: steps(8, end);
+                            
+/* Multiple animations */
+animation-timing-function: ease, step-start, cubic-bezier(0.1, 0.7, 1.0, 0.1);
+                            
+* Global values */
+animation-timing-function: inherit;
+animation-timing-function: initial;
+ animation-timing-function: unset;
+                        </code>
+                    </pre>
+                </div>
+                <div class='demo'>
+                    <p class='sub-title'>CSS Demo: animation-timing-function</p>
+                    <div class='demo-container'>
+                        <div class='demo-dot'>
+                            <div class='animation-timing-function-dot dot'
+                                onclick="showAnimationTimingFunctionDemo(1, 'linear')">
+                                animation-timing-function: linear;</div>
+                            <div class='animation-timing-function-dot dot'
+                                onclick="showAnimationTimingFunctionDemo(2, 'ease-in-out')">
+                                animation-timing-function: ease-in-out;</div>
+                            <div class='animation-timing-function-dot dot'
+                                onclick="showAnimationTimingFunctionDemo(3, 'steps(5, end')">
+                                animation-timing-function: steps(5, end);</div>
+                            <div class='animation-timing-function-dot dot'
+                                onclick="showAnimationTimingFunctionDemo(4, 'cubic-bezier(0.1, -0.6, 0.2, 0)')">
+                                animation-timing-function: cubic-bezier(0.1, -0.6, 0.2, 0);</div>
+                        </div>
+                        <div class='demo-window'>
+                            <div class='animation-timing-function-demo'></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class='main-section' id='animation-delay'>
+            <header>animation-delay</header>
+            <p>The <code>animation-delay</code> CSS property sets when an animation starts. The animation can start
+                later, immediately from its beginning, or immediately and partway through the animation.</p>
+            <hr>
+            <div class='sub-section'>
+                <div class='syntax'>
+                    <p class='sub-title'>Sintax</p>
+                    <pre>
+                        <code>
+/* Single animation */
+ animation-delay: 3s;
+animation-delay: 0s;
+animation-delay: -1500ms;
+                            
+/* Multiple animations */
+animation-delay: 2.1s, 480ms;
+                        </code>
+                    </pre>
+                </div>
+                <div class='demo'>
+                    <p class='sub-title'>CSS Demo: animation-delay</p>
+                    <div class='demo-container'>
+                        <div class='demo-dot'>
+                            <div class='animation-delay-dot dot' onclick="showAnimationDelayDemo(1, '250ms')">
+                                animation-delay: 250ms;</div>
+                            <div class='animation-delay-dot dot' onclick="showAnimationDelayDemo(2, '2s')">
+                                animation-delay: 2s;</div>
+                            <div class='animation-delay-dot dot' onclick="showAnimationDelayDemo(3, '-2s')">
+                                animation-delay: -2s;</div>
+                        </div>
+                        <div class='demo-window'>
+                            <div class='animation-delay-demo'></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class='main-section' id='animation-iteration-count'>
+            <header>animation-iteration-count</header>
+            <p>The <code>animation-iteration-count</code> CSS property sets the number of times an animation cycle
+                should be played before stopping.</p>
+            <p>If multiple values are specified, each time the animation is played the next value in the list is used,
+                cycling back to the first value after the last one is used.</p>
+            <hr>
+            <div class='sub-section'>
+                <div class='syntax'>
+                    <p class='sub-title'>Sintax</p>
+                    <pre>
+                        <code>
+/* Keyword value */
+animation-iteration-count: infinite;
+                            
+/* <code>number</code> values */
+animation-iteration-count: 3;
+animation-iteration-count: 2.4;
+                            
+/* Multiple values */
+animation-iteration-count: 2, 0, infinite;
+                        </code>
+                    </pre>
+                </div>
+                <div class='demo'>
+                    <p class='sub-title'>CSS Demo: animation-iteration-count</p>
+                    <div class='demo-container'>
+                        <div class='demo-dot'>
+                            <div class='animation-iteration-count-dot dot'
+                                onclick="showAnimationIterationCountDemo(1, '0')">
+                                animation-iteration-count: 0;</div>
+                            <div class='animation-iteration-count-dot dot'
+                                onclick="showAnimationIterationCountDemo(2, '2')">
+                                animation-iteration-count: 2;</div>
+                            <div class='animation-iteration-count-dot dot'
+                                onclick="showAnimationIterationCountDemo(3, '1.5')">
+                                animation-iteration-count: 1.5;</div>
+                        </div>
+                        <div class='demo-window'>
+                            <div class='animation-iteration-count-demo'></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </section>
+
+        <section class='main-section' id='animation-direction'>
+            <header>animation-direction</header>
+            <p>The <code>animation-direction</code> CSS property sets whether an animation should play forwards,
+                backwards, or alternating back and forth.</p>
+            <hr>
+            <div class='sub-section'>
+                <div class='syntax'>
+                    <p class='sub-title'>Sintax</p>
+                    <pre>
+                        <code>
+/* Single animation */
+animation-direction: normal;
+animation-direction: reverse;
+animation-direction: alternate;
+animation-direction: alternate-reverse;
+                            
+/* Multiple animations */
+animation-direction: normal, reverse;
+animation-direction: alternate, reverse, normal;
+                            
+/* Global values */
+animation-direction: inherit;
+animation-direction: initial;
+animation-direction: unset;
+                        </code>
+                    </pre>
+                </div>
+                <div class='demo'>
+                    <p class='sub-title'>CSS Demo: animation-direction</p>
+                    <div class='demo-container'>
+                        <div class='demo-dot'>
+                            <div class='animation-direction-dot dot' onclick="showAnimationDirectionDemo(1, 'normal')">
+                                animation-direction: normal;</div>
+                            <div class='animation-direction-dot dot' onclick="showAnimationDirectionDemo(2, 'reverse')">
+                                animation-direction: reverse;</div>
+                            <div class='animation-direction-dot dot'
+                                onclick="showAnimationDirectionDemo(3, 'alternate')">
+                                animation-direction: alternate;</div>
+                            <div class='animation-direction-dot dot'
+                                onclick="showAnimationDirectionDemo(4, 'alternate-reverse')">
+                                animation-direction: alternate-reverse;</div>
+                        </div>
+                        <div class='demo-window'>
+                            <div class='animation-direction-demo'></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class='main-section' id='animation-fill-mode'>
+            <header>animation-fill-mode</header>
+            <p>The <code>animation-fill-mode</code> CSS property sets how a CSS animation applies styles to its target
+                before and after its execution.</p>
+            <hr>
+            <div class='sub-section'>
+                <div class='syntax'>
+                    <p class='sub-title'>Sintax</p>
+                    <pre>
+                        <code>
+/* Single animation */
+animation-fill-mode: none;
+animation-fill-mode: forwards;
+animation-fill-mode: backwards;
+animation-fill-mode: both;
+                            
+/* Multiple animations */
+animation-fill-mode: none, backwards;
+animation-fill-mode: both, forwards, none;
+                        </code>
+                    </pre>
+                </div>
+                <div class='demo'>
+                    <p class='sub-title'>CSS Demo: animation-fill-mode</p>
+                    <div class='demo-container'>
+                        <div class='demo-dot'>
+                            <div class='animation-fill-mode-dot dot' onclick="showAnimationFillModeDemo(1, 'none')">
+                                animation-fill-mode: none; animation-delay: 1s;</div>
+                            <div class='animation-fill-mode-dot dot' onclick="showAnimationFillModeDemo(2, 'forwards')">
+                                animation-fill-mode: forwards; animation-delay: 1s;</div>
+                            <div class='animation-fill-mode-dot dot'
+                                onclick="showAnimationFillModeDemo(3, 'backwards')">
+                                animation-fill-mode: backwards; animation-delay: 1s;</div>
+                            <div class='animation-fill-mode-dot dot' onclick="showAnimationFillModeDemo(4, 'both')">
+                                animation-fill-mode: both; animation-delay: 1s;</div>
+                        </div>
+                        <div class='demo-window'>
+                            <div class='animation-fill-mode-demo'></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class='main-section' id='animation-play-state'>
+            <header>animation-play-state</header>
+            <p>The <code>animation-play-state</code> CSS property sets whether an animation is running or paused.</p>
+            <hr>
+            <div class='sub-section'>
+                <div class='syntax'>
+                    <p class='sub-title'>Sintax</p>
+                    <pre>
+                        <code>
+/* Single animation */
+animation-play-state: running;
+animation-play-state: paused;
+                            
+/* Multiple animations */
+animation-play-state: paused, running, running;
+                            
+/* Global values */
+animation-play-state: inherit;
+animation-play-state: initial;
+animation-play-state: unset;;
+                        </code>
+                    </pre>
+                </div>
+                <div class='demo'>
+                    <p class='sub-title'>CSS Demo: animation-play-state</p>
+                    <div class='demo-container'>
+                        <div class='demo-dot'>
+                            <div class='animation-play-state-dot dot' onclick="showAnimationPlayStateDemo(1, 'paused')">
+                                animation-play-state: paused;</div>
+                            <div class='animation-play-state-dot dot'
+                                onclick="showAnimationPlayStateDemo(2, 'running')">animation-play-state: running;</div>
+                        </div>
+                        <div class='demo-window'>
+                            <div class='animation-play-state-demo'></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class='main-section' id='animation'>
+            <header>animation</header>
+            <p>The <code>animation</code> shorthand CSS property applies an animation between styles. It is a shorthand
+                for
+                <code>animation-name, animation-duration, animation-timing-function, animation-delay, animation-iteration-count, animation-direction, animation-fill-mode,</code>
+                and <code>animation-play-state.</code></p>
+            <hr>
+            <div class='sub-section'>
+                <div class='syntax'>
+                    <p class='sub-title'>Sintax</p>
+                    <pre>
+                        <code>
+/* @keyframes duration | timing-function | delay | 
+iteration-count | direction | fill-mode | play-state | name */
+animation: 3s ease-in 1s 2 reverse both paused slidein;
+                            
+/* @keyframes name | duration | timing-function | delay */
+animation: 3s linear 1s slidein;
+                            
+/* @keyframes name | duration */
+animation: slidein 3s;
+                        </code>
+                    </pre>
+                </div>
+                <div class='demo'>
+                    <p class='sub-title'>CSS Demo: animation</p>
+                    <div class='demo-container'>
+                        <div class='demo-dot'>
+                            <div class='animation-dot dot' onclick="showAnimationDemo(1, 'animation-1')">
+                                animation: 3s ease-in 1s infinite reverse both running slidein;</div>
+                            <div class='animation-dot dot' onclick="showAnimationDemo(2, 'animation-2')">
+                                animation: 3s linear 1s infinite running slidein;</div>
+                            <div class='animation-dot dot' onclick="showAnimationDemo(3, 'animation-3')">
+                                animation: 3s linear 1s infinite alternate slidein;</div>
+                            <div class='animation-dot dot' onclick="showAnimationDemo(4, 'animation-4')">
+                                animation: .5s linear 1s infinite alternate slidein;</div>
+                        </div>
+                        <div class='demo-window'>
+                            <div class='animation-demo'></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class='main-section' id='@keyframes'>
+            <header>@keyframes</header>
+            <p>The <code>@keyframes</code> CSS at-rule controls the intermediate steps in a CSS animation sequence by
+                defining styles for keyframes (or waypoints) along the animation sequence. This gives more control over
+                the intermediate steps of the animation sequence than transitions.</p>
+            <div class='sub-section'>
+                <div class='syntax2'>
+                    <pre>
+                        <code>
+@keyframes slidein {
+    from {
+        transform: translateX(0%);
+    }
+                              
+    to {
+        transform: translateX(100%);
+    }
+ }
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            <p>JavaScript can access the <code>@keyframes</code> at-rule with the CSS object model interface
+                <code>CSSKeyframesRule.</code></p>
+            <p>To use keyframes, create a <code>@keyframes</code> rule with a name that is then used by the <a
+                    href='#animation-name'><code>animation-name</code></a> property to match an animation to its
+                keyframe declaration. Each <code>@keyframes</code> rule contains a style list of keyframe selectors,
+                which specify percentages along the animation when the keyframe occurs, and a block containing the
+                styles for that keyframe.</p>
+            <p>You can list the keyframe percentages in any order; they will be handled in the order they should occur.
+            </p>
+        </section>
+
+        <section class='main-section' id='reference'>
+            <header>Reference</header>
+            <p>All the documentation in this page is taken from <a
+                    href='https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations'
+                    target="_blank">MDN.</a>
+            </p>
+            <p>The general style of the page is also taken from <a
+                    href='https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations'
+                    target="_blank">MDN.</a>
+            </p>
+        </section>
+
+    </main>
+
+    <script src='technical-documentation-page.js'></script>
+
+</body>
+
+</html>

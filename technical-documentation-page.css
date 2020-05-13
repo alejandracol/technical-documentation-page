@@ -1,0 +1,354 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --thematic-color: rgb(0, 130, 150);
+    --backgroud-color-sintax: rgba(200, 200, 200, 0.2);
+    --backgroud-color-demo: rgba(0, 180, 200, 0.2);
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    position: relative;
+    display: grid;
+    grid-template-columns: 300px calc(100% - 300px);
+    font-family: 'Jost', 'Segoe UI';
+    font-size: 1.9rem;
+    font-weight: 300;
+}
+
+#navbar {
+    position: fixed;
+    grid-area: 1/1/2/2;
+    padding: 2rem;
+    width: 300px;
+    height: 100vh;
+    color: white;
+    background-color: rgb(50, 50, 50);
+}
+
+.dropdown-btn {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    body {
+        grid-template-columns: 1fr;
+    }
+
+    #navbar {
+        padding: 0 0 0 9rem;
+        line-height: 5rem;
+        width: 100vw;
+        height: 65px;
+        z-index: 1;
+    }
+    
+    .symbol-page {
+        position: absolute;
+        margin: 0.5rem 0 0.5rem -6rem;
+        width: 30px;
+        height: 30px;
+        background-color: white;
+        transform: rotate(45deg);
+        box-shadow: 10px -10px green;
+    }
+
+    .dropdown-btn {
+        display: inline-block;
+        padding-left: 1rem;
+        font-size: 1.8rem;
+    }
+
+    .dropdown {
+        display: none;
+        max-width: 300px;
+        min-height: 240px;
+        background-color: inherit;
+    }
+
+    #navbar header:hover .dropdown, #navbar:focus-within .dropdown {
+        display: block;
+    }
+
+    .nav-link {
+        line-height: 2.5rem;
+    }
+
+    #main-doc {
+        margin-top: 65px;
+        width: 100vw;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        font-size: 1.5rem;
+    }
+
+    #navbar {
+        padding-left: 7rem;
+    }
+
+    header {
+        font-size: 2.4rem !important;
+    }
+
+    #main-doc {
+        padding: 0 !important;
+    }
+
+    .sub-title {
+        font-size: 1.8rem !important;
+    }
+
+    .demo-dot {
+        min-width: 240px !important;
+    }
+}
+
+@media (max-width: 412px) {
+    #navbar {
+        line-height: 2.4rem;
+    }
+
+    .dropdown-btn {
+        position: absolute;
+        margin-top: -1rem;
+    }
+}
+
+header, p, .nav-link {
+    padding: 1rem 2rem;
+}
+
+header {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+#navbar ul {
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 85%;
+}
+
+li {
+    list-style: none;
+}
+
+.nav-link {
+    display: block;
+    color: inherit;
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+#main-doc {
+    grid-area: 1/2/2/3;
+    padding: 2rem;
+}
+
+a {
+    color: var(--thematic-color);
+    text-decoration: unset;
+}
+
+pre {
+    margin: -2rem 2rem;
+}
+
+#main-doc ul {
+    padding: 1rem 2rem 2rem 2rem;
+}
+
+hr {
+    margin: 1rem 2rem;
+    border-top: 3px solid var(--thematic-color);
+}
+
+.sub-section {
+    display: flex;
+    margin: 1rem;
+}
+
+@media (max-width: 1300px) {
+    .sub-section {
+        flex-direction: column;
+        margin-right: 3rem;
+    }
+
+    .syntax {
+        height: 100% !important; 
+    }
+}
+
+.sub-title {
+    font-size: 2.25rem;
+}
+
+.syntax, .syntax2, .demo {
+    margin: 1rem;
+    width: 100%;
+    min-width: 300px;
+}
+
+.syntax {
+    overflow: auto;
+    height: 400px;
+    background-color: var(--backgroud-color-sintax);
+}
+
+.syntax2 {
+    background-color: var(--backgroud-color-sintax);
+}
+
+.demo {
+    background-color: var(--backgroud-color-demo);
+}
+
+.demo-container {
+    display: flex;
+    margin: 1rem;
+}
+
+.dot, .demo-window {
+    margin: 1rem;
+    background-color: white;
+}
+
+.demo-dot {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+}
+
+.dot {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 .5rem;
+    height: 100%;
+    min-height: 40px;
+    border: 3px solid rgba(100, 100, 100, 0.2);
+    border-left: 6px solid rgba(100, 100, 100, 0.2);
+}
+
+.dot:hover {
+    border: 3px solid rgba(100, 100, 100, 0.8);
+    border-left: 6px solid rgba(100, 100, 100, 0.8);
+}
+
+.active {
+    border: 3px solid var(--thematic-color) !important;
+    border-left: 6px solid var(--thematic-color) !important;
+}
+
+.demo-window {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+    height: 300px;
+}
+
+@media (max-width: 1600px) {
+    .syntax {
+        height: 500px;
+    }
+
+    .demo-container {
+        flex-direction: column;
+    }
+
+    .dot {
+        margin: 5px 0;
+    }
+
+    .demo-window {
+        margin: 5px 0;
+        height: 200px;
+    }
+}
+
+.animation-name-demo, .animation-duration-demo, .animation-timing-function-demo, .animation-delay-demo, .animation-iteration-count-demo, 
+.animation-direction-demo, .animation-fill-mode-demo, .animation-play-state-demo, .animation-demo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid black;
+    background-color: rgb(20, 100, 170);
+}
+
+.animation-delay-demo, .animation-fill-mode-demo{ 
+    position: absolute;
+    left: 10px;
+}
+
+.animation-name-demo { animation: 1s ease-in infinite alternate paused; }
+
+.animation-duration-demo { animation: slide ease-in infinite alternate paused; }
+
+.animation-timing-function-demo { animation: slide 2s infinite paused; }
+
+.animation-delay-demo { animation: slide 3s linear 2 alternate paused; }
+
+.animation-iteration-count-demo { animation: slide 3s linear paused; }
+
+.animation-direction-demo{ animation: slide 3s ease-in infinite paused; }
+
+.animation-fill-mode-demo { animation: slide 1s linear 1s 1 paused; }
+
+.animation-play-state-demo { animation: slide 3s ease-in infinite alternate paused; }
+
+.animation-1 { animation: 3s ease-in 1s infinite reverse both running slide; }
+
+.animation-2 { animation: 3s linear 1s infinite running slide; }
+
+.animation-3 { animation: 3s linear 1s infinite alternate slide; }
+
+.animation-4 { animation: .5s linear 1s infinite alternate slide; }
+
+
+@keyframes slide {
+    from {
+        position: absolute;
+        left: 10px;
+        background-color: rgb(255, 180, 0);
+        
+    }
+    to {
+        position: absolute;
+        left: calc(100% - 100px);
+        background-color: rgb(255, 180, 0);
+    }
+}
+
+@keyframes bounce {
+    0% {
+        position: absolute;
+        top: 10px;
+        background-color: rgb(255, 180, 0);
+    }
+    80% {
+        height: 100px;
+    }
+    100% {
+        position: absolute;
+        top: calc(100% - 80px);
+        height: 80px;
+        background-color: rgb(255, 180, 0);
+    }
+} 
+  
